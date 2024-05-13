@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap.html">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 00 10px rgba(0, 0, 0, .1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, input textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background: #4caf50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+        @media screen and (max-width: 769px) {
+            .container {
+                max-width: 90%;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    <h2>Contact Us</h2>
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for ="email">Email:</label>
+            <input type="email" id="email" email ="email">
+
+            <label for="message">Leave a review:</label>
+            <textarea id="review" name="review"></textarea>
+            <input type="submit" value="Submit">
+            </form>
+    <div id="response"></div>
+    </div>
+<script>
+    // Function to validate the contact form
+    
+    function validateForm(event) {
+        event.preventDefault(); // Prevents the form from submitting
+        // Get from inputs
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var message = document.getElementById('message').value.trim();
+        var response = document.getElementById('response');
+        // Check if input fields are empty
+        if(name === '' || email === '' || message === '') {
+            response.innerHTML='<p class="error">Please fill in all fields.</p>';
+            return;
+        }
+        // Validate email format
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            response.innerHTML='<p class="error">Please enter a valid email address to proceed</p>';
+            return;
+        }
+        // If the validations pass, submit the form (here you can send data to your server)
+        var formData = new FormData(document.getElementById('contactForm'));
+        var xhr =new XMLHttpRequest();
+        xhr.open('POST','submit.PHP', true);
+        xhr.onload=function(){
+            if (xhr,status === 2001){
+                response.innerHTML='<p>Form submitted successfully.</p>';
+                document.getElementById('contactForm').reset(); // Clears the contact form.
+            } else {
+                response.innerHTML='<p class="error">Error submitting your request. Please try again later.</p>';
+            }
+        }
+        xhr.send(formatData);
+    }
+    // Add event listener for the submit button
+    document.getElementById('contactForm'). addEventListener('submit', validateForm);
+</script>
+</body>
+</html>

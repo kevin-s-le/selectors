@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .box {
+            width: calc(33.33% - 20px);
+            background-color:rgb(17, 177, 177);
+            margin-bottom: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        @media screen and (max-width: 768px) {
+            .container{
+                flex-direction: column;
+            }
+            .box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Box 1</h1>
+            <p>Problem Understanding: The first step is to clearly understand the problem that needs to be solved
+                and the objectives of the system. This includes defining performance metrics such as speed,
+                accuracy, resource usage, and scalability.</p>
+        </div>
+        <div class="box">
+            <h1>Box 2</h1>
+            <p>Algorithm Design: Based on the problem understanding, design as algorithm that addresses the requirements while
+                optimizing performance. This may include choosing the appropriate data structure, selecting efficient
+            algorithms, and designing algorithms with low time and space complexity.</p>
+        </div>
+        <div class="box">
+            <h1>Box 3</h1>
+        <p>Optimization Techniques: Implement optimization technies to improve the efficiency of the algorithm.
+            This could include algorithmic optimizations such as reducing redundant computations, minimizing memory usage,
+            and leveraging parallelism to concurrency where applicable.</p>
+        </div>
+    </div>
+    
+</body>
+</html>
